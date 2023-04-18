@@ -7,31 +7,27 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = `
-Give the essay below a score out of 100. Evaluate it as if you were a IB high school teacher. Provide personalized specific and in-depth feedback on what to improve to get a perfect score. Assess these four areas: strength of arguments relative to the thesis, organization, strength of vocabulary, and convention.
+I want you to act as a personal trainer. I will provide you with all the information needed about an individual looking to become fitter, stronger and healthier through physical training, and your role is to devise the best workout and meal plans for that person depending on their current fitness level, goals and lifestyle habits.  I will provide you with the individual's height, weight, age, activity level, availability, access to equipment, diet restrictions, disliked foods, and goals. With this information, you should create an optimized meal plan and workout plan based on your knowledge as a personal trainer. For the meal plan, calculate the individual's necessary calories per day to achieve their goal, using the information given, and ensure the meal plan matches those calories, as well as macros (protein, fat, and carbs). Provide the exact measurements of each ingredient in each meal and show the calories + macronutrients in each meal.
+Make sure the individual gets 30 grams of fiber everyday with their meal plan. Provide a different meal plan for all 7 days of the week.
 
-Output in this format:
-Arguments:
-Organization:
-Language:
-Convention:
-
-If it is an essay conducting literary analysis, assess the strength of the analysis as well and output it as such:
-Analysis: 
-
-Provide at least 8 lines of feedback for each area. Reference specific examples from the essay when suggesting improvements. At the end, provide an overall score and feedback on what needs to be improved to get a perfect score.
-
-Essay: 
+Here's the inidividual's info:
 `;
 
 const generateAction = async (req, res) => {
 	console.log(`API: ${basePromptPrefix}${req.body.userInput}`);
 
-	const baseCompletion = await openai.createCompletion({
-		model: "text-davinci-003",
-		prompt: `${basePromptPrefix}${req.body.userInput}\n`,
-		temperature: 0,
-		max_tokens: 1000,
-	});
+	// const baseCompletion = await openai.createCompletion({
+	// 	model: "text-davinci-003",
+	// 	prompt: `${basePromptPrefix}${req.body.userInput}\n`,
+	// 	temperature: 0,
+	// 	max_tokens: 1000,
+	// });
+
+	const completion = await openai.createChatCompletion({
+		model: "gpt-3.5-turbo",
+		messages: [{role: "user", content: `${basePromptPrefix}${req.body.userInput}\n`}],
+	  });
+	  console.log(completion.data.choices[0].message);
 
 	const basePromptOutput = baseCompletion.data.choices.pop();
 
