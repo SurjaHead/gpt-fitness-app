@@ -22,14 +22,14 @@ const generateAction = async (req, res) => {
 	// 	temperature: 0,
 	// 	max_tokens: 1000,
 	// });
-
+	
 	const completion = await openai.createChatCompletion({
 		model: "gpt-3.5-turbo",
 		messages: [{role: "user", content: `${basePromptPrefix}${req.body.userInput}\n`}],
 	  });
 	  console.log(completion.data.choices[0].message);
 
-	const basePromptOutput = baseCompletion.data.choices.pop();
+	const basePromptOutput = completion.data.choices.pop();
 
 	res.status(200).json({ output: basePromptOutput });
 };
