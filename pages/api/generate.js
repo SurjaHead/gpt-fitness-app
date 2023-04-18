@@ -47,7 +47,8 @@ const generateAction = async (req, res) => {
 		messages: [{role: "user", content: `${basePromptPrefix}${req.body.userInput}\n`}],
 	});
 	console.log(completion.data.choices[0].message);
-	const basePromptOutput = baseCompletion.data.choices.pop();
+	
+	const basePromptOutput = Completion.data.choices.pop();
 
 	res.status(200).json({ output: basePromptOutput });
 };
