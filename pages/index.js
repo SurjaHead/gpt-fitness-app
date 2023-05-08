@@ -46,8 +46,16 @@ const Home = () => {
 					</div>
 					<div className="header-subtitle">
 						<h2>
-							Copy and paste your essay below and we'll give you feedback on how to improve it. Provide any additional information that might be useful. For example, an essay prompt or specific intructions followed when writing the essay.
-						</h2>
+							Give us your information and preferences below and we'll generate the perfect workout plan and meal plan for you. Give your information in the following format: </h2>
+							<h2>Height:</h2>
+							<h2>Weight:</h2>
+							<h2>Activity level:</h2>
+							<h2>Availability:</h2>
+							<h2>Access to equipment:</h2>
+							<h2>Diet restrictions:</h2>
+							<h2>Disliked foods:</h2>
+							<h2>Goals:</h2>
+						
 					</div>
 				</div>
 
