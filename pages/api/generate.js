@@ -58,8 +58,8 @@ Here's the individual's info:
 
 import { Configuration, OpenAIApi } from 'openai';
 const configuration = new Configuration({
-    apiKey: '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',
-    organization: 'org-4LOysOMzz5TtvgJn2oBEE9DS',
+    apiKey: process.env.OPENAI_API_KEY,
+    // organization: process.env.OPENAI_ORGANIZATION,
 });
 const openai = new OpenAIApi(configuration);
 const generateAction = async (req, res) => {
@@ -67,7 +67,7 @@ const generateAction = async (req, res) => {
     const completion = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo',
         messages: [{ role: 'user', content: `${basePromptPrefix}${req.body.userInput}` }],
-        max_tokens: 2000
+        max_tokens: 3000
     });
     console.log(completion.data.choices[0].message);
     const basePromptOutput = completion.data.choices.pop();
