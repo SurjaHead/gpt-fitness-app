@@ -12,19 +12,21 @@ const Home = () => {
 		setIsGenerating(true);
 
 		console.log("Calling OpenAI...");
-		const response = await fetch("/api/generate", {
+		const completion = await fetch("/api/generate", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
+			
 			},
 			body: JSON.stringify({ userInput }),
 		});
 
-		const data = await response.json();
+		const data = await completion.json();
 		const { output } = data;
-		console.log("OpenAI replied...", output.text);
+		console.log("OpenAI replied...", output.message.content);
+		console.log(data)
 
-		setApiOutput(`${output.text}`);
+		setApiOutput(`${output.message.content}`);
 		setIsGenerating(false);
 	};
 
@@ -42,7 +44,7 @@ const Home = () => {
 				<div className="header">
 					<div className="header-title">
 						{/* Change your headline here */}
-						<h1>Get feedback on your essay.</h1>
+						<h1>Get customized workout & meal plans.</h1>
 					</div>
 					<div className="header-subtitle">
 						<h2>
@@ -69,7 +71,8 @@ const Home = () => {
 					<div className="prompt-buttons">
 						<a
 							className={
-								isGenerating ? "generate-button loading" : "generate-button"
+								isGenerating ? "generate-button loading" : 
+								"generate-button"
 							}
 							onClick={callGenerateEndpoint}
 						>
