@@ -8,12 +8,8 @@
 
 // const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = `
-I want you to act as a personal trainer. I will provide you with all the information needed about an individual looking to become fitter, stronger, and healthier through physical training, and your role is to devise the best workout plan for that person depending on their current fitness level, goals, and lifestyle habits.  
-
-I will provide you with the individual's height, weight, availability, preferred form of exercise, and access to equipment, and your job is to create the optimal workout plan for that person to accomplish their goal. 
-
-`;
+const basePromptPrefix =
+  'I want you to act as a personal trainer. I will provide you with all the information needed about an individual looking to become fitter, stronger, and healthier through physical training, and your role is to devise the best workout plan for that person depending on their information and their goals. \nI will provide you with the user\'s information, which will be delimited by 3 backticks, and your job is to devise an appropriate workout plan for them by following the steps delimited by three double quotes.\n\n"""\n1 - Extract whether they prefer weightlifting or cardio workouts.\n2 - If they like weightlifting, decide whether primarily hypertrophy-based training or strength-based training will be more effective for them. If they like cardio, decide how much of their exercise should be low vs moderate vs high-intensity training. \n3 - Based on the number of days per week they can train, consider the most optimal way for them to develop their entire body and select the appropriate exercises.\n4 - Create a plan for each day that they plan to train and include the specific exercises, why you chose each exercise, and how to measure progress for each exercise.\n"""\n\nProvide the workout plan in JSON format, with the days of the week as keys.\n\n';
 
 import { Configuration, OpenAIApi } from "openai";
 
