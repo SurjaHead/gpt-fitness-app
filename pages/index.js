@@ -82,7 +82,7 @@ const Home = () => {
 Height: 6 feet
 Weight: 180 lbs
 Goal: lose 10lbs of fat
-Availability: 5 times a week, 1 hour mins per workout
+Availability: 5 times a week, 1 hour per workout
 Access to equipment: everything
 Preferred form of exercise: weightlifting`}
             className="prompt-box"
@@ -114,7 +114,7 @@ Preferred form of exercise: weightlifting`}
                 </div>
               </div>
               <div className="output-content">
-                <p>{apiOutput}</p>
+                <p dangerouslySetInnerHTML={{ __html: apiOutput }} />
               </div>
             </div>
           )}

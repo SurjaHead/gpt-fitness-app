@@ -98,7 +98,7 @@ body {
   overflow: hidden;
   padding: 20px;
   position: relative;
-  width: 610px;
+  width: 810px;
   max-width: 1200px;
   will-change: transform;
   overflow: auto;
@@ -112,6 +112,13 @@ body {
   color: rgba(255, 255, 255, 0.75);
   text-decoration: none;
   text-transform: none;
+}
+
+table,
+th,
+td,
+tr {
+  border: 1px solid black;
 }
 
 textarea {
@@ -275,7 +282,6 @@ textarea {
   flex-flow: column nowrap;
   gap: 10px;
   height: min-content;
-  max-width: 1200px;
   overflow: hidden;
   position: relative;
   width: 100%;
